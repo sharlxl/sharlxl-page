@@ -1,9 +1,8 @@
 'use client';
 import React from 'react';
 import { ModalWrapper } from './ModalWrapper';
-import { LocalStorageKeys } from '@/config/common';
 import { v4 as uuidv4 } from 'uuid';
-import { convertFormDataToJsonString } from '@/utils/localstorage';
+import { addNewBookmark } from '@/utils/localStorage';
 
 export interface CreateBookmarkModalProps {
   isOpen: boolean;
@@ -23,11 +22,7 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     formData.append('bm-id', uuidv4());
-    // console.log('test', convertFormDataToJsonString(formData));
-    localStorage.setItem(
-      LocalStorageKeys.BOOKMARKS,
-      convertFormDataToJsonString(formData)
-    );
+    addNewBookmark(formData);
     onClose();
   };
 

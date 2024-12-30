@@ -1,23 +1,25 @@
 interface BookmarkCardProps {
-  bgColor: string; // Color value as a string
-  label: string; // Label of the bookmark as a string
-  notes?: string; // Notes are optional (might be undefined)
-  url: string; // URL of the bookmark as a string
+  id: string;
+  bgColor: string;
+  title: string;
+  category?: string; // cat are optional (might be undefined)
+  url: string;
 }
 
 export const BookmarkCard: React.FC<BookmarkCardProps> = ({
+  id,
   bgColor,
-  label,
-  notes,
+  title,
+  category,
   url,
 }) => {
   return (
     <div
       style={{ backgroundColor: bgColor }}
-      className='flex flex-col rounded-md'
+      className='flex flex-col rounded-md p-3'
     >
-      <p>{label}</p>
-      <p>{notes}</p>
+      <p>{title}</p>
+      <p>{category}</p>
       <p>{url}</p>
     </div>
   );
