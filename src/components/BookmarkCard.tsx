@@ -1,4 +1,7 @@
-interface BookmarkCardProps {
+import { WhiteEdit, WhiteTrashBin } from '@/asset/icons';
+import Image from 'next/image';
+
+export interface BookmarkCardProps {
   id: string;
   bgColor: string;
   title: string;
@@ -16,11 +19,23 @@ export const BookmarkCard: React.FC<BookmarkCardProps> = ({
   return (
     <div
       style={{ backgroundColor: bgColor }}
-      className='flex flex-col rounded-md p-3'
+      className='flex items-center rounded-md p-3 gap-5'
     >
-      <p>{title}</p>
-      <p>{category}</p>
-      <p>{url}</p>
+      <div className='flex flex-col'>
+        <p>{title}</p>
+        <p>{category}</p>
+        <p>{url}</p>
+      </div>
+      <Image
+        src={WhiteEdit}
+        alt='edit'
+        onClick={() => console.log('edit', id)}
+      />
+      <Image
+        src={WhiteTrashBin}
+        alt='bin'
+        onClick={() => console.log('delete', id)}
+      />
     </div>
   );
 };

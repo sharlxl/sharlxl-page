@@ -2,7 +2,8 @@
 import React from 'react';
 import { ModalWrapper } from './ModalWrapper';
 import { v4 as uuidv4 } from 'uuid';
-import { addNewBookmark } from '@/utils/localStorage';
+import { formDataToObj } from '@/utils/localStorage';
+import { useBookmarks } from '@/app/context/bookmarksContext';
 
 export interface CreateBookmarkModalProps {
   isOpen: boolean;
@@ -18,11 +19,13 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { bookmarks, setBookmarks } = useBookmarks();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    formData.append('bm-id', uuidv4());
-    addNewBookmark(formData);
+    formData.append('bmId', uuidv4());
+    // const newBookmarkObj = formDataToObj(formData);
+    setBookmarks([formDataToObj(formData), ...bookmarks]);
     onClose();
   };
 
@@ -36,8 +39,8 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
         <InputLabelWrapper label='URL:'>
           <input
             type='url'
-            name='bm-url'
-            id='bm-url'
+            name='bmUrl'
+            id='bmUrl'
             placeholder='https://example.com'
             pattern='https://.*'
             required
@@ -47,15 +50,15 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
         <InputLabelWrapper label='Name:'>
           <input
             type='text'
-            name='bm-title'
-            id='bm-title'
+            name='bmTitle'
+            id='bmTitle'
             placeholder='Name/Title of Bookmark'
             className='text-black'
             required
           />
         </InputLabelWrapper>
         <InputLabelWrapper label='Category:'>
-          <select name='bm-category' id='bm-category' className='text-black'>
+          <select name='bmCategory' id='bmCategory' className='text-black'>
             <option value=''>Select a category</option>
             <option value='important'>Important</option>
             <option value='manhwa'>Manhwa</option>

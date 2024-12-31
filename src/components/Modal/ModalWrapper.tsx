@@ -1,5 +1,5 @@
 'use client';
-import { CloseCross } from '@/asset/icons';
+import { WhiteCross } from '@/asset/icons';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
@@ -41,7 +41,7 @@ export const ModalWrapper: React.FC<ModalProps> = ({
         <div className='flex justify-between items-center mb-2'>
           <h2 id='modal-title'>{modalTitle}</h2>
           <button onClick={onClose} className='p-2'>
-            <Image src={CloseCross} alt='close' className='w-4 h-4' />
+            <Image src={WhiteCross} alt='close' className='w-4 h-4' />
           </button>
         </div>
         {children}
