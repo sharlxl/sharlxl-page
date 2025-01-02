@@ -24,7 +24,6 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     formData.append('bmId', uuidv4());
-    // const newBookmarkObj = formDataToObj(formData);
     setBookmarks([formDataToObj(formData), ...bookmarks]);
     onClose();
   };
