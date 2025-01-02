@@ -1,16 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ModalWrapper } from './ModalWrapper';
-import { v4 as uuidv4 } from 'uuid';
 import { useBookmarks } from '@/app/context/bookmarksContext';
 import { InputLabelWrapper } from '../InputWrapper';
 
-export interface CreateBookmarkModalProps {
+export interface EditBookmarkModalProps {
+  id: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
+export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
+  id,
   isOpen,
   onClose,
 }) => {
@@ -21,6 +22,11 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
     bmCategory: '',
     bmId: '',
   });
+
+  useEffect(() => {
+    const selectedBookmark = bookmarks.find((bm) => bm.bmId === id);
+    setNewBookmark({ ...newBookmark, ...selectedBookmark });
+  }, [id]);
 
   const onChangeInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -33,7 +39,10 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setBookmarks([{ ...newBookmark, bmId: uuidv4() }, ...bookmarks]);
+    const filteredBookmarks = bookmarks.filter(
+      (bm) => bm.bmId !== newBookmark.bmId
+    );
+    setBookmarks([newBookmark, ...filteredBookmarks]);
     setNewBookmark({
       bmUrl: '',
       bmTitle: '',

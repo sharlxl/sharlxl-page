@@ -3,6 +3,7 @@ import { WhiteEdit, WhiteTrashBin } from '@/asset/icons';
 import Image from 'next/image';
 import { ConfirmDeletionModal } from './Modal/ConfirmDeletionModal';
 import { useState } from 'react';
+import { EditBookmarkModal } from './Modal/EditBookmarkModal';
 
 export interface BookmarkCardProps {
   id: string;
@@ -20,6 +21,7 @@ export const BookmarkCard: React.FC<BookmarkCardProps> = ({
   url,
 }) => {
   const [isDelete, setIsDelete] = useState('');
+  const [isEdit, setIsEdit] = useState('');
 
   return (
     <>
@@ -27,6 +29,11 @@ export const BookmarkCard: React.FC<BookmarkCardProps> = ({
         id={isDelete}
         isOpen={!!isDelete}
         onClose={() => setIsDelete('')}
+      />
+      <EditBookmarkModal
+        id={isEdit}
+        isOpen={!!isEdit}
+        onClose={() => setIsEdit('')}
       />
       <div
         style={{ backgroundColor: bgColor }}
@@ -37,11 +44,7 @@ export const BookmarkCard: React.FC<BookmarkCardProps> = ({
           <p>{category}</p>
           <p>{url}</p>
         </div>
-        <Image
-          src={WhiteEdit}
-          alt='edit'
-          onClick={() => console.log('edit', id)}
-        />
+        <Image src={WhiteEdit} alt='edit' onClick={() => setIsEdit(id)} />
         <Image src={WhiteTrashBin} alt='bin' onClick={() => setIsDelete(id)} />
       </div>
     </>
