@@ -8,15 +8,15 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className='flex items-center w-full h-[4rem] p-4 space-x-4 border'>
-        <div>
+      <div className='flex items-center w-full h-[4rem] p-4 space-x-4 backdrop-blur-sm bg-gradient-to-b from-[#FFFFFF1A] to-transparent'>
+        {/* <div>
           <Link href='/'>Home</Link>
-        </div>
+        </div> */}
         <div>
           <Link href='/bookmarks'>Bookmarks</Link>
         </div>
-        <div>Settings</div>
-        <div onClick={() => setIsModalOpen(true)}>+</div>
+        {/* <div>Settings</div> */}
+        <div onClick={() => setIsModalOpen(true)}>+ New Bookmark</div>
       </div>
       {/* {isModalOpen && ( */}
       <CreateBookmarkModal

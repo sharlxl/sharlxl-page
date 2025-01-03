@@ -11,7 +11,7 @@ export default function Bookmarks() {
           <BookmarkCard
             key={bookmark.bmId}
             id={bookmark.bmId}
-            bgColor='#2a0140'
+            bgColor=''
             title={bookmark.bmTitle}
             category={bookmark.bmCategory}
             url={bookmark.bmUrl}

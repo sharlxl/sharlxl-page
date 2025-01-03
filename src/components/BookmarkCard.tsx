@@ -36,7 +36,7 @@ export const BookmarkCard: React.FC<BookmarkCardProps> = ({
         onClose={() => setIsEdit('')}
       />
       <div
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: bgColor || 'rgba(255, 255, 255, 0.05)' }}
         className='flex items-center rounded-md p-3 gap-5'
       >
         <div className='flex flex-col'>

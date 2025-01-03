@@ -1,11 +1,13 @@
-import { BookmarkCard } from '@/components/BookmarkCard';
-import Link from 'next/link';
+'use client';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
-  return (
-    <div className='flex flex-col'>
-      <p>home</p>
-      <Link href='/bookmarks'>Bookmark</Link>
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/bookmarks');
+  }, []);
+
+  return null;
 }
