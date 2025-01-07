@@ -23,6 +23,16 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
     bmId: '',
   });
 
+  const onCloseForm = () => {
+    setNewBookmark({
+      bmUrl: '',
+      bmTitle: '',
+      bmCategory: '',
+      bmId: '',
+    });
+    onClose();
+  };
+
   useEffect(() => {
     const selectedBookmark = bookmarks.find((bm) => bm.bmId === id);
     setNewBookmark({ ...newBookmark, ...selectedBookmark });
@@ -43,19 +53,13 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
       (bm) => bm.bmId !== newBookmark.bmId
     );
     setBookmarks([newBookmark, ...filteredBookmarks]);
-    setNewBookmark({
-      bmUrl: '',
-      bmTitle: '',
-      bmCategory: '',
-      bmId: '',
-    });
-    onClose();
+    onCloseForm();
   };
 
   return (
     <ModalWrapper
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onCloseForm}
       modalTitle={'Create a New Bookmark'}
     >
       <form onSubmit={onSubmit} className='flex flex-col gap-2'>

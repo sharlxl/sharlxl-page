@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ModalWrapper } from './ModalWrapper';
 import { v4 as uuidv4 } from 'uuid';
 import { useBookmarks } from '@/app/context/bookmarksContext';
@@ -22,6 +22,38 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
     bmId: '',
   });
 
+  const onCloseForm = () => {
+    setNewBookmark({
+      bmUrl: '',
+      bmTitle: '',
+      bmCategory: '',
+      bmId: '',
+    });
+    onClose();
+  };
+
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      if (newBookmark.bmUrl) {
+        fetch(`/api/get-title?url=${encodeURIComponent(newBookmark.bmUrl)}`)
+          .then((res) => res.json())
+          .then((data: any) => {
+            if (data.title) {
+              setNewBookmark({ ...newBookmark, bmTitle: data.title });
+            } else {
+              console.log('No Title found');
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    }, 500);
+
+    // Clean up the timeout on each render (when the input changes)
+    return () => clearTimeout(debounceTimeout);
+  }, [newBookmark.bmUrl]);
+
   const onChangeInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -34,19 +66,13 @@ export const CreateBookmarkModal: React.FC<CreateBookmarkModalProps> = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setBookmarks([{ ...newBookmark, bmId: uuidv4() }, ...bookmarks]);
-    setNewBookmark({
-      bmUrl: '',
-      bmTitle: '',
-      bmCategory: '',
-      bmId: '',
-    });
-    onClose();
+    onCloseForm();
   };
 
   return (
     <ModalWrapper
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onCloseForm}
       modalTitle={'Create a New Bookmark'}
     >
       <form onSubmit={onSubmit} className='flex flex-col gap-2'>
