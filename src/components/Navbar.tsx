@@ -16,7 +16,11 @@ export const Navbar = () => {
           <Link href='/bookmarks'>Bookmarks</Link>
         </div>
         {/* <div>Settings</div> */}
-        <div onClick={() => setIsModalOpen(true)}>+ New Bookmark</div>
+        <div className='flex justify-end flex-1 px-4'>
+          <div className='w-fit' onClick={() => setIsModalOpen(true)}>
+            + New Bookmark
+          </div>
+        </div>
       </div>
       {/* {isModalOpen && ( */}
       <CreateBookmarkModal
