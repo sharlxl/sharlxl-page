@@ -6,8 +6,10 @@
 
 :root {
   --background: #0a0a0a;
-  /* --background: #ffffff; */
-  --foreground: #ffffff;
+  --foreground: #fffade;
+  --primary: #2d0c48;
+  --secondary: #dcb0f9;
+  --mainAccent: #00c9b1;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -28,6 +30,16 @@
   }
 }
 
+@keyframes gradient-tl-br {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -42,4 +54,13 @@ body {
   background-size: 400% 400%; /* Increase the size for a smoother transition */
   animation: gradientSlide 10s ease infinite; /* 10 seconds duration, ease for smooth transition */
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.animate-text-gradient {
+  background: linear-gradient(135deg, #fffade, #dcb0f9, #fffade);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-tl-br 8s ease infinite;
 }

@@ -1,6 +1,6 @@
 'use client';
 import { BookmarkCard } from '@/components/BookmarkCard';
-import { useBookmarks } from '../context/bookmarksContext';
+import { useBookmarks } from '../../context/bookmarksContext';
 
 export default function Bookmarks() {
   const { bookmarks } = useBookmarks();

@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { ModalWrapper } from './ModalWrapper';
-import { useBookmarks } from '@/app/context/bookmarksContext';
+import { useBookmarks } from '@/context/bookmarksContext';
 import { InputLabelWrapper } from '../InputWrapper';
 
 export interface EditBookmarkModalProps {

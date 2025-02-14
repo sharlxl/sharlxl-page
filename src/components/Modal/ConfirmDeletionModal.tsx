@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { ModalWrapper } from './ModalWrapper';
-import { useBookmarks } from '@/app/context/bookmarksContext';
+import { useBookmarks } from '@/context/bookmarksContext';
 
 export interface ConfirmDeletionModalProps {
   id: string;

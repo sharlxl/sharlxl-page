@@ -1,4 +1,4 @@
-import { useBookmarks } from '@/app/context/bookmarksContext';
+import { useBookmarks } from '@/context/bookmarksContext';
 import { WhiteEdit, WhiteTrashBin } from '@/asset/icons';
 import Image from 'next/image';
 import { ConfirmDeletionModal } from './Modal/ConfirmDeletionModal';

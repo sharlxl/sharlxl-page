@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { ModalWrapper } from './ModalWrapper';
 import { v4 as uuidv4 } from 'uuid';
-import { useBookmarks } from '@/app/context/bookmarksContext';
+import { useBookmarks } from '@/context/bookmarksContext';
 import { InputLabelWrapper } from '../InputWrapper';
 
 export interface CreateBookmarkModalProps {
